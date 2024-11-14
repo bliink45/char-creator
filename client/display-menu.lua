@@ -1,17 +1,15 @@
-CharacterCreator.Main.initRender(CharacterCreator)
+CharacterCreator.Main.initRenderers(CharacterCreator)
 local openMenu = false
 
 RegisterCommand("char_creator:open", function()
-    openMenu = not openMenu
-    RageUI.Visible(CharacterCreator.Main.menu, openMenu)
+    openMenu = true
+    RageUI.Visible(CharacterCreator.Main.menu, true)
 end, false)
 
 Citizen.CreateThread(function()
     while true do
         if openMenu then
             CharacterCreator.display()
-        elseif CharacterCreator.Main.menu.Open then
-            RageUI.Visible(mainMenu, false)
         end
         Citizen.Wait(0)
     end

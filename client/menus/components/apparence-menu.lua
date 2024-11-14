@@ -47,5 +47,7 @@ CharacterCreator.Apparence = {
                 apparence.sunDamage = index
             end
         })
+        RageUI.ColourPanel("Couleur Principale", RageUI.PanelColour.HairCut, 1, 1, {}, RageUI.CurrentMenu.Index, {})
+        RageUI.ColourPanel("Couleur Secondaire", RageUI.PanelColour.HairCut, 1, 1, {}, RageUI.CurrentMenu.Index, {})
     end
 }

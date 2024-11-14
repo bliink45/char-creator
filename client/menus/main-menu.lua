@@ -5,8 +5,9 @@ CharacterCreator.Main = {
         'colors', 'apple_green'),
 }
 
-function CharacterCreator.Main.initRender(menus)
+function CharacterCreator.Main.initRenderers(menus)
     local modelIndex = 1
+    CharacterCreator.Main.menu.Closable = false
     CharacterCreator.Main.render = function()
         RageUI.List("Modèle", { "Homme", "Femme" }, modelIndex,
         "Sexe de votre personnage", {}, true, {
@@ -24,5 +25,9 @@ function CharacterCreator.Main.initRender(menus)
         menus.Outfit.menu)
     RageUI.Button("Informations", "Identité du personnage", {}, true, {},
         menus.Informations.menu)
+        RageUI.Button(" Enregistrer et quitter",
+        "Sélectionnez pour enregistrer votre personnage",
+        {RightLabel = ">", Color = {100, 119, 171, 120,
+        HightLightColor = {100, 119, 171, 120}}}, true, {}, menus.Save.menu)
     end
 end

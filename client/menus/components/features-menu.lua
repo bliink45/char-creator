@@ -12,62 +12,62 @@ CharacterCreator.Features = {
     menu = RageUI.CreateSubMenu(CharacterCreator.Main.menu,
         "Traits du visage", "Détails faciaux du personnage"),
     render = function()
-        RageUI.Button("Nez", "", {}, true, {
+        RageUI.Button("Nez", nil, {}, true, {
             onActive = function()
                 currentGrid = features.nose
             end
         })
-        RageUI.Button("Profil du nez", "", {}, true, {
+        RageUI.Button("Profil du nez", nil, {}, true, {
             onActive = function()
                 currentGrid = features.noseProfile
             end
         })
-        RageUI.Button("Pointe du nez", "", {}, true, {
+        RageUI.Button("Pointe du nez", nil, {}, true, {
             onActive = function()
                 currentGrid = features.nosePeak
             end
         })
-        RageUI.Button("Sourcils", "", {}, true, {
+        RageUI.Button("Sourcils", nil, {}, true, {
             onActive = function()
                 currentGrid = features.eyebrows
             end
         })
-        RageUI.Button("Pommettes", "", {}, true, {
+        RageUI.Button("Pommettes", nil, {}, true, {
             onActive = function()
                 currentGrid = features.cheekbones
             end
         })
-        RageUI.Button("Joues", "", {}, true, {
+        RageUI.Button("Joues", nil, {}, true, {
             onActive = function()
                 currentGrid = features.cheeks
             end
         })
-        RageUI.Button("Yeux", "", {}, true, {
+        RageUI.Button("Yeux", nil, {}, true, {
             onActive = function()
                 currentGrid = features.eyes
             end
         })
-        RageUI.Button("Levres", "", {}, true, {
+        RageUI.Button("Levres", nil, {}, true, {
             onActive = function()
                 currentGrid = features.Lips
             end
         })
-        RageUI.Button("Machoire", "", {}, true, {
+        RageUI.Button("Machoire", nil, {}, true, {
             onActive = function()
                 currentGrid = features.jaws
             end
         })
-        RageUI.Button("Menton", "", {}, true, {
+        RageUI.Button("Menton", nil, {}, true, {
             onActive = function()
                 currentGrid = features.chin
             end
         })
-        RageUI.Button("Taille du Menton", "", {}, true, {
+        RageUI.Button("Taille du Menton", nil, {}, true, {
             onActive = function()
                 currentGrid = features.chinSize
             end
         })
-        RageUI.Button("Epaisseur du cou", "", {}, true, {
+        RageUI.Button("Epaisseur du cou", nil, {}, true, {
             onActive = function()
                 currentGrid = features.neckThickness
             end

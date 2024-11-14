@@ -6,9 +6,10 @@ local loadingSpeed = nil
 local percent = nil
 
 local LoadingStage = {
-    { label = "Chargement des données ...", speed = 0.006 },
-    { label = "Sauvegarde ...", speed = 0.005 },
-    { label = "Finalisation ...", speed = 0.02 },
+    { label = "Initialisation ...", speed = 0.0005 },
+    { label = "Chargement des données ...", speed = 0.007 },
+    { label = "Sauvegarde ...", speed = 0.002 },
+    { label = "Finalisation ...", speed = 0.008 },
     { label = "Terminé", speed = 0.001 }
 }
 
@@ -28,15 +29,18 @@ CharacterCreator.Save = {
         if isCharCreated and not loadingComplete then
             RageUI.PercentagePanel(percent or 0.0, loadingLabel, '', '', {})
 
-            if percent >= 0.5 and percent < 0.7 then
+            if percent >= 0.02 and percent < 0.5 then
                 loadingSpeed = LoadingStage[2].speed
                 loadingLabel = LoadingStage[2].label
-            elseif percent >= 0.7 and percent < 0.95 then
+            elseif percent >= 0.5 and percent < 0.7 then
                 loadingSpeed = LoadingStage[3].speed
                 loadingLabel = LoadingStage[3].label
-            elseif percent >= 0.95 then
+            elseif percent >= 0.7 and percent < 0.95 then
                 loadingSpeed = LoadingStage[4].speed
                 loadingLabel = LoadingStage[4].label
+            elseif percent >= 0.95 then
+                loadingSpeed = LoadingStage[5].speed
+                loadingLabel = LoadingStage[5].label
                 Citizen.CreateThread(function()
                     Citizen.Wait(1000)
                     loadingComplete = true

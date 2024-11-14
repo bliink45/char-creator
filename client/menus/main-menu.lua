@@ -7,7 +7,11 @@ CharacterCreator.Main = {
 
 function CharacterCreator.Main.initRenderers(menus)
     local modelIndex = 1
+    
     CharacterCreator.Main.menu.Closable = false
+    menus.Features.menu.EnableMouse = true
+    menus.Features.menu.EnableMouse = true
+
     CharacterCreator.Main.render = function()
         RageUI.List("Modèle", { "Homme", "Femme" }, modelIndex,
         "Sexe de votre personnage", {}, true, {

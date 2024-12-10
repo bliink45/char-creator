@@ -51,7 +51,8 @@ client_scripts {
 
     'client/menus/main-menu.lua',
     'client/menus/components/*.lua',
-    'client/display-menu.lua'
+    'client/display-menu.lua',
+    'client/client.lua'
 }
 
 server_scripts {

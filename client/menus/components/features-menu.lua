@@ -3,8 +3,7 @@ CharacterCreator.Data.features = { nose = { x = 0.5, y = 0.5 }, noseProfile = { 
             cheekbones = { x = 0.5, y = 0.5 }, cheeks = { x = 0.5, y = 0.5 },
             eyes = { x = 0.5, y = 0.5 }, Lips = { x = 0.5, y = 0.5 },
             jaws = { x = 0.5, y = 0.5 }, chin = { x = 0.5, y = 0.5 },
-            chinSize = { x = 0.5, y = 0.5 }, neckThickness = { x = 0.5, y = 0.5
-        }}
+            chinSize = { x = 0.5, y = 0.5 }, neckThickness = { x = 0.5, y = 0.5 }}
 
 currentGrid = CharacterCreator.Data.features.nose
 

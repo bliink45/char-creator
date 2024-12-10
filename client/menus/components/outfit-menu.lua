@@ -1,3 +1,7 @@
+CharacterCreator.Data.outfit = {
+    -- Structure to be defined
+}
+
 CharacterCreator.Outfit = {
     menu = RageUI.CreateSubMenu(CharacterCreator.Main.menu, "Vêtements",
         "Tenue du personnage"),

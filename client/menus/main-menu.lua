@@ -3,8 +3,13 @@ CharacterCreator = {
         menu = RageUI.CreateMenu("Créateur", "Options de personnage", 0, 90,
             'colors', 'apple_green'),
     },
-    Data = {}
+    Data = {
+        informations = {},
+        heredity = {}
+    }
 }
+
+local genders = { "Homme", "Femme" }
 
 function CharacterCreator.Main.initRenderers(menus)
     local modelIndex = 1
@@ -14,7 +19,7 @@ function CharacterCreator.Main.initRenderers(menus)
     menus.Apparence.menu.EnableMouse = true
 
     CharacterCreator.Main.render = function()
-        RageUI.List("Modèle", { "Homme", "Femme" }, modelIndex,
+        RageUI.List("Modèle", genders, modelIndex,
         "Sexe de votre personnage", {}, true, {
             onListChange = function(index, value)
                 modelIndex = index

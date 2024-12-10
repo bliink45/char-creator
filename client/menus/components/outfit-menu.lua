@@ -4,6 +4,7 @@ CharacterCreator.Outfit = {
     render = function()
         RageUI.Button("Tenue 1", nil, {}, true, {
             onActive = function()
+                -- set outfit index
             end
         })
         RageUI.Button("Tenue 2", nil, {}, true, {

@@ -1,8 +1,9 @@
-CharacterCreator = {}
-
-CharacterCreator.Main = {
-    menu = RageUI.CreateMenu("Créateur", "Options de personnage", 0, 90,
-        'colors', 'apple_green'),
+CharacterCreator = {
+    Main = {
+        menu = RageUI.CreateMenu("Créateur", "Options de personnage", 0, 90,
+            'colors', 'apple_green'),
+    },
+    Data = {}
 }
 
 function CharacterCreator.Main.initRenderers(menus)
@@ -10,7 +11,7 @@ function CharacterCreator.Main.initRenderers(menus)
     
     CharacterCreator.Main.menu.Closable = false
     menus.Features.menu.EnableMouse = true
-    menus.Features.menu.EnableMouse = true
+    menus.Apparence.menu.EnableMouse = true
 
     CharacterCreator.Main.render = function()
         RageUI.List("Modèle", { "Homme", "Femme" }, modelIndex,

@@ -39,13 +39,7 @@ CharacterCreator.Data.apparence = {
         }
     },
     eyes = {
-        index = 1,
-        colors = {
-            primary = {
-                MinimumIndex = 1,
-                CurrentIndex = 1
-            }
-        }
+        index = 1
     },
     frickles = {
         index = 1,
@@ -60,6 +54,7 @@ CharacterCreator.Data.apparence = {
 
 currentColorPanel = CharacterCreator.Data.apparence.hair.colors
 currentPanelColour = RageUI.PanelColour.HairCut
+apparenceCategory = nil
 
 CharacterCreator.Apparence = {
     menu = RageUI.CreateSubMenu(CharacterCreator.Main.menu, "Apparence",
@@ -67,15 +62,18 @@ CharacterCreator.Apparence = {
     render = function()
         RageUI.List('Cheveux', { 1, 2, 3, 4 }, CharacterCreator.Data.apparence.hair.index, nil, {}, true, {
             onActive = function()
+                apparenceCategory = 'HAIRS'
                 currentColorPanel = CharacterCreator.Data.apparence.hair.colors
                 currentPanelColour = RageUI.PanelColour.HairCut
             end,
             onListChange = function(index, indexValue)
                 CharacterCreator.Data.apparence.hair.index = index
+                SetPedComponentVariation(PlayerPedId(), 2, index - 1, 0, 2)
             end
         })
         RageUI.List('Sourcils', { 1, 2, 3, 4 }, CharacterCreator.Data.apparence.eyebrows.index, nil, {}, true, {
             onActive = function()
+                apparenceCategory = 'EYEBROWS'
                 currentColorPanel = CharacterCreator.Data.apparence.eyebrows.colors
                 currentPanelColour = RageUI.PanelColour.HairCut
             end,
@@ -85,20 +83,23 @@ CharacterCreator.Apparence = {
         })
         RageUI.List('Barbes', { 1, 2, 3, 4 }, CharacterCreator.Data.apparence.bear.index, nil, {}, true, {
             onActive = function()
+                apparenceCategory = 'BEARDS'
                 currentColorPanel = CharacterCreator.Data.apparence.bear.colors
                 currentPanelColour = RageUI.PanelColour.HairCut
             end,
             onListChange = function(index, indexValue)
                 CharacterCreator.Data.apparence.bear.index = index
+                SetPedHeadOverlay(PlayerPedId(), 1, index - 2, 1.0)
             end
         })
-        RageUI.List('Yeux', { 1 }, CharacterCreator.Data.apparence.eyes.index, nil, {}, true, {
+        RageUI.List('Yeux', { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }, CharacterCreator.Data.apparence.eyes.index, nil, {}, true, {
             onActive = function()
                 currentColorPanel = CharacterCreator.Data.apparence.eyes.colors
                 currentPanelColour = RageUI.PanelColour.Eyes
             end,
             onListChange = function(index, indexValue)
                 CharacterCreator.Data.apparence.eyes.index = index
+                SetPedEyeColor(PlayerPedId(), index - 1, 0, 1)
             end
         })
         RageUI.List('Taches de rousseurs', { 1, 2, 3, 4 }, CharacterCreator.Data.apparence.frickles.index, nil, {}, true, {
@@ -132,6 +133,13 @@ CharacterCreator.Apparence = {
                     onColorChange = function(MinimumIndex, CurrentIndex)
                         currentColorPanel.primary.MinimumIndex = MinimumIndex
                         currentColorPanel.primary.CurrentIndex = CurrentIndex
+                        if apparenceCategory == 'HAIRS' then
+                            SetPedHairColor(PlayerPedId(), CurrentIndex - 1, 0)
+                        elseif apparenceCategory == 'EYEBROWS' then
+                            SetPedHeadOverlayColor(PlayerPedId(), 2, 1,	CurrentIndex - 1, 0)
+                        elseif apparenceCategory == 'BEARDS' then
+                            SetPedHeadOverlayColor(PlayerPedId(), 1, 1,	CurrentIndex - 1, 0)
+                        end
                     end
                 }, RageUI.CurrentMenu.Index, {})
             end

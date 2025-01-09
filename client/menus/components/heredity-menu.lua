@@ -2,6 +2,7 @@ local mumList = {"Hannah", "Audrey", "Jasmine", "Giselle", "Amelia", "Isabella",
 local dadList = {"Benjamin", "Daniel", "Joshua", "Noah", "Andrew", "Juan", "Alex", "Isaac", "Evan", "Ethan", "Vincent", "Angel", "Diego", "Adrian", "Gabriel", "Michael", "Santiago", "Kevin", "Louis", "Samuel", "Anthony", "Claude", "Niko", "John"}
 local moms = {"21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "45"} -- female heads
 local dads = {"00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "42", "43", "44"} -- male heads
+local mdhash = GetHashKey("mp_m_freemode_01")
 
 CharacterCreator.Data.heredity = {
     dadIndex = 1,
@@ -44,8 +45,25 @@ CharacterCreator.Heredity = {
 
 
 function UpdateHeritage()
-    SetPedHeadBlendData(PlayerPedId(), tonumber(moms[CharacterCreator.Data.heredity.momIndex]), tonumber(dads[CharacterCreator.Data.heredity.dadIndex]), nil, 
-    tonumber(moms[CharacterCreator.Data.heredity.momIndex]), tonumber(dads[CharacterCreator.Data.heredity.dadIndex]), nil, 
-    tonumber(CharacterCreator.Data.heredity.heritageBody)/10, tonumber(CharacterCreator.Data.heredity.heritageSkin)/10, nil, 
-    true)
+    if GetEntityModel(PlayerPedId()) ~= mdhash then
+        while not HasModelLoaded(mdhash) do
+            RequestModel(mdhash)
+            Wait(0)
+        end
+        SetPlayerModel(PlayerId(), mdhash)
+    end
+
+    SetPedHeadBlendData(
+        PlayerPedId(),
+        tonumber(moms[CharacterCreator.Data.heredity.momIndex]),
+        tonumber(dads[CharacterCreator.Data.heredity.dadIndex]),
+        nil, 
+        tonumber(moms[CharacterCreator.Data.heredity.momIndex]),
+        tonumber(dads[CharacterCreator.Data.heredity.dadIndex]),
+        nil, 
+        tonumber(CharacterCreator.Data.heredity.heritageBody)/10, 
+        tonumber(CharacterCreator.Data.heredity.heritageSkin)/10,
+        nil, 
+        true
+    )
 end

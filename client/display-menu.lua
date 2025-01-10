@@ -2,7 +2,9 @@ CharacterCreator.Main.initRenderers(CharacterCreator)
 local openMenu = false
 
 RegisterCommand("char_creator:open", function()
+    print("player count: ", SyncV.Core.SessionManager.getPlayerCount())
     openMenu = true
+    RefreshModel()
     RageUI.Visible(CharacterCreator.Main.menu, true)
 end, false)
 

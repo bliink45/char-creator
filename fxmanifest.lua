@@ -49,6 +49,8 @@ client_scripts {
     -- Windows
     '@RageUI/menu/windows/UIHeritage.lua',
 
+    'client/utils.lua',
+
     'client/menus/main-menu.lua',
     'client/menus/components/*.lua',
     'client/display-menu.lua',
@@ -60,5 +62,6 @@ server_scripts {
 }
 
 dependencies {
-    'RageUI'
+    'RageUI',
+    'sync-v'
 }

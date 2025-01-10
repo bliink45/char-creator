@@ -4,8 +4,8 @@ CharacterCreator = {
             'colors', 'apple_green'),
     },
     Data = {
-        informations = {},
-        heredity = {}
+        Identity = {},
+        Model = {}
     }
 }
 

@@ -1,4 +1,4 @@
-CharacterCreator.Data.informations = {
+CharacterCreator.Data.Identity.informations = {
     firstname = "",
     lastname = "",
     birthday = "",
@@ -12,39 +12,39 @@ CharacterCreator.Informations = {
     menu = RageUI.CreateSubMenu(CharacterCreator.Main.menu, "Informations",
         "Identité du personnage"),
     render = function()
-        RageUI.Button("Prénom(s)", nil, {RightLabel = '~b~'..CharacterCreator.Data.informations.firstname}, true, {
+        RageUI.Button("Prénom(s)", nil, {RightLabel = '~b~'..CharacterCreator.Data.Identity.informations.firstname}, true, {
             onSelected = function()
-                CharacterCreator.Data.informations.firstname = Keyboard('Votre / Vos prénoms :', 30, CharacterCreator.Data.informations.firstname)
+                CharacterCreator.Data.Identity.informations.firstname = Keyboard('Votre / Vos prénoms :', 30, CharacterCreator.Data.Identity.informations.firstname)
             end
         })
-        RageUI.Button("Nom", nil, {RightLabel = '~b~'..CharacterCreator.Data.informations.lastname}, true, {
+        RageUI.Button("Nom", nil, {RightLabel = '~b~'..CharacterCreator.Data.Identity.informations.lastname}, true, {
             onSelected = function()
-                CharacterCreator.Data.informations.lastname = Keyboard('Votre nom :', 30, CharacterCreator.Data.informations.lastname)
+                CharacterCreator.Data.Identity.informations.lastname = Keyboard('Votre nom :', 30, CharacterCreator.Data.Identity.informations.lastname)
             end
         })
-        RageUI.Button("Date de naissance", nil, {RightLabel = '~b~'..CharacterCreator.Data.informations.birthday}, true, {
+        RageUI.Button("Date de naissance", nil, {RightLabel = '~b~'..CharacterCreator.Data.Identity.informations.birthday}, true, {
             onSelected = function()
-                CharacterCreator.Data.informations.birthday = Keyboard('Votre anniversaire :', 30, CharacterCreator.Data.informations.birthday)
+                CharacterCreator.Data.Identity.informations.birthday = Keyboard('Votre anniversaire :', 30, CharacterCreator.Data.Identity.informations.birthday)
             end
         })
-        RageUI.Button("Nationalité", nil, {RightLabel = '~b~'..CharacterCreator.Data.informations.nationality}, true, {
+        RageUI.Button("Nationalité", nil, {RightLabel = '~b~'..CharacterCreator.Data.Identity.informations.nationality}, true, {
             onSelected = function()
-                CharacterCreator.Data.informations.nationality = Keyboard('Votre nationalité :', 30, CharacterCreator.Data.informations.nationality)
+                CharacterCreator.Data.Identity.informations.nationality = Keyboard('Votre nationalité :', 30, CharacterCreator.Data.Identity.informations.nationality)
             end
         })
-        RageUI.Button("Taille (cm)", nil, {RightLabel = '~b~'..CharacterCreator.Data.informations.height}, true, {
+        RageUI.Button("Taille (cm)", nil, {RightLabel = '~b~'..CharacterCreator.Data.Identity.informations.height}, true, {
             onSelected = function()
-                CharacterCreator.Data.informations.height = Keyboard('Votre taille :', 30, CharacterCreator.Data.informations.height)
+                CharacterCreator.Data.Identity.informations.height = Keyboard('Votre taille :', 30, CharacterCreator.Data.Identity.informations.height)
             end
         })
-        RageUI.Button("Poids (kg)", nil, {RightLabel = '~b~'..CharacterCreator.Data.informations.weight}, true, {
+        RageUI.Button("Poids (kg)", nil, {RightLabel = '~b~'..CharacterCreator.Data.Identity.informations.weight}, true, {
             onSelected = function()
-                CharacterCreator.Data.informations.weight = Keyboard('Votre poids :', 30, CharacterCreator.Data.informations.weight)
+                CharacterCreator.Data.Identity.informations.weight = Keyboard('Votre poids :', 30, CharacterCreator.Data.Identity.informations.weight)
             end
         })
-        RageUI.Button("Background", nil, {RightLabel = '~b~' .. CharacterCreator.Data.informations.background}, true, {
+        RageUI.Button("Background", nil, {RightLabel = '~b~' .. CharacterCreator.Data.Identity.informations.background}, true, {
             onSelected = function()
-                CharacterCreator.Data.informations.background = Keyboard('Votre background :', 5000, CharacterCreator.Data.informations.background)
+                CharacterCreator.Data.Identity.informations.background = Keyboard('Votre background :', 5000, CharacterCreator.Data.Identity.informations.background)
             end
         })
     end

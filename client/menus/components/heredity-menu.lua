@@ -4,7 +4,7 @@ local moms = {"21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", 
 local dads = {"00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "42", "43", "44"} -- male heads
 local mdhash = GetHashKey("mp_m_freemode_01")
 
-CharacterCreator.Data.heredity = {
+CharacterCreator.Data.Model.heredity = {
     dadIndex = 1,
     momIndex = 1,
     heritageBody = 1.0,
@@ -15,28 +15,28 @@ CharacterCreator.Heredity = {
     menu = RageUI.CreateSubMenu(CharacterCreator.Main.menu, "Hérédité",
         "Hérédité du personnage"),
     render = function()
-        RageUI.Window.Heritage(CharacterCreator.Data.heredity.momIndex - 1, CharacterCreator.Data.heredity.dadIndex - 1)
-        RageUI.List('Mère', mumList, CharacterCreator.Data.heredity.momIndex, nil, {}, true, {
+        RageUI.Window.Heritage(CharacterCreator.Data.Model.heredity.momIndex - 1, CharacterCreator.Data.Model.heredity.dadIndex - 1)
+        RageUI.List('Mère', mumList, CharacterCreator.Data.Model.heredity.momIndex, nil, {}, true, {
             onListChange = function(index, indexValue)
-                CharacterCreator.Data.heredity.momIndex = index
+                CharacterCreator.Data.Model.heredity.momIndex = index
                 UpdateHeritage()
             end
         })
-        RageUI.List('Père', dadList, CharacterCreator.Data.heredity.dadIndex, nil, {}, true, {
+        RageUI.List('Père', dadList, CharacterCreator.Data.Model.heredity.dadIndex, nil, {}, true, {
             onListChange = function(index, indexValue)
-                CharacterCreator.Data.heredity.dadIndex = index
+                CharacterCreator.Data.Model.heredity.dadIndex = index
                 UpdateHeritage()
             end
         })
-        RageUI.UISliderHeritage('Physique', CharacterCreator.Data.heredity.heritageBody, nil, {
+        RageUI.UISliderHeritage('Physique', CharacterCreator.Data.Model.heredity.heritageBody, nil, {
             onSliderChange = function(indexValue, index)
-                CharacterCreator.Data.heredity.heritageBody = index
+                CharacterCreator.Data.Model.heredity.heritageBody = index
                 UpdateHeritage()
             end
         })
-        RageUI.UISliderHeritage('Peau', CharacterCreator.Data.heredity.heritageSkin, nil, {
+        RageUI.UISliderHeritage('Peau', CharacterCreator.Data.Model.heredity.heritageSkin, nil, {
             onSliderChange = function(indexValue, index)
-                CharacterCreator.Data.heredity.heritageSkin = index
+                CharacterCreator.Data.Model.heredity.heritageSkin = index
                 UpdateHeritage()
             end
         })
@@ -45,24 +45,16 @@ CharacterCreator.Heredity = {
 
 
 function UpdateHeritage()
-    if GetEntityModel(PlayerPedId()) ~= mdhash then
-        while not HasModelLoaded(mdhash) do
-            RequestModel(mdhash)
-            Wait(0)
-        end
-        SetPlayerModel(PlayerId(), mdhash)
-    end
-
     SetPedHeadBlendData(
         PlayerPedId(),
-        tonumber(moms[CharacterCreator.Data.heredity.momIndex]),
-        tonumber(dads[CharacterCreator.Data.heredity.dadIndex]),
+        tonumber(moms[CharacterCreator.Data.Model.heredity.momIndex]),
+        tonumber(dads[CharacterCreator.Data.Model.heredity.dadIndex]),
         nil, 
-        tonumber(moms[CharacterCreator.Data.heredity.momIndex]),
-        tonumber(dads[CharacterCreator.Data.heredity.dadIndex]),
+        tonumber(moms[CharacterCreator.Data.Model.heredity.momIndex]),
+        tonumber(dads[CharacterCreator.Data.Model.heredity.dadIndex]),
         nil, 
-        tonumber(CharacterCreator.Data.heredity.heritageBody)/10, 
-        tonumber(CharacterCreator.Data.heredity.heritageSkin)/10,
+        tonumber(CharacterCreator.Data.Model.heredity.heritageBody)/10, 
+        tonumber(CharacterCreator.Data.Model.heredity.heritageSkin)/10,
         nil, 
         true
     )

@@ -5,7 +5,9 @@ CharacterCreator = {
     },
     Data = {
         Identity = {},
-        Model = {}
+        Model = {
+            gender = 1
+        }
     }
 }
 
@@ -23,6 +25,8 @@ function CharacterCreator.Main.initRenderers(menus)
         "Sexe de votre personnage", {}, true, {
             onListChange = function(index, value)
                 modelIndex = index
+                CharacterCreator.Data.Model.gender = index
+                RefreshModel()
             end
         })
     RageUI.Button("Hérédité", "Parents du personnage", {}, true, {},

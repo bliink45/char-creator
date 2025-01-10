@@ -108,6 +108,7 @@ CharacterCreator.Apparence = {
             end,
             onListChange = function(index, indexValue)
                 CharacterCreator.Data.Model.apparence.frickles.index = index
+                -- TODO
             end
         })
         RageUI.List('Rides', { 1, 2, 3, 4 }, CharacterCreator.Data.Model.apparence.wrinkles.index, nil, {}, true, {
@@ -116,6 +117,7 @@ CharacterCreator.Apparence = {
             end,
             onListChange = function(index, indexValue)
                 CharacterCreator.Data.Model.apparence.wrinkles.index = index
+                -- TODO
             end
         })
         RageUI.List('Coups de soleil', { 1, 2, 3, 4 }, CharacterCreator.Data.Model.apparence.sunDamage.index, nil, {}, true, {
@@ -124,6 +126,7 @@ CharacterCreator.Apparence = {
             end,
             onListChange = function(index, indexValue)
                 CharacterCreator.Data.Model.apparence.sunDamage.index = index
+                -- TODO
             end
         })
 

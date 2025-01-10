@@ -30,7 +30,7 @@ CharacterCreator.Save = {
                     end
 
                     SyncV.Core.PersonageManager.create(SyncV.Utility.encodeJson(CharacterCreator.Data.Identity), SyncV.Utility.encodeJson(CharacterCreator.Data.Model), 8973)
-                    print("Character saved");
+                    EndCharCreator()
                 end)
             end
         })

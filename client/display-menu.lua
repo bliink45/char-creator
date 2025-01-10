@@ -1,11 +1,18 @@
 CharacterCreator.Main.initRenderers(CharacterCreator)
 local openMenu = false
 
-RegisterCommand("char_creator:open", function()
-    print("player count: ", SyncV.Core.SessionManager.getPlayerCount())
+function DisplayMenu()
     openMenu = true
-    RefreshModel()
     RageUI.Visible(CharacterCreator.Main.menu, true)
+end
+
+function CloseMenu()
+    openMenu = false
+    RageUI.Visible(CharacterCreator.Main.menu, false)
+end
+
+RegisterCommand("char_creator:open", function()
+    DisplayMenu()
 end, false)
 
 Citizen.CreateThread(function()
@@ -24,3 +31,4 @@ function CharacterCreator.display()
         end
     end
 end
+

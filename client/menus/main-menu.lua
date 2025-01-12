@@ -6,26 +6,36 @@ CharacterCreator = {
     Data = {
         Identity = {},
         Model = {
-            gender = 1
+            gender = nil
         }
     }
 }
 
 local genders = { "Homme", "Femme" }
 
-function CharacterCreator.Main.initRenderers(menus)
-    local modelIndex = 1
-    
+function CharacterCreator.Main.initRenderers(menus)    
     CharacterCreator.Main.menu.Closable = false
     menus.Features.menu.EnableMouse = true
     menus.Apparence.menu.EnableMouse = true
 
+    CharacterCreator.Data.Model.gender = 1
+
+    if not isMalePed() then
+        CharacterCreator.Data.Model.gender = 2
+    end
+
     CharacterCreator.Main.render = function()
-        RageUI.List("Modèle", genders, modelIndex,
+        RageUI.List("Modèle", genders, CharacterCreator.Data.Model.gender,
         "Sexe de votre personnage", {}, true, {
             onListChange = function(index, value)
-                modelIndex = index
                 CharacterCreator.Data.Model.gender = index
+
+                if index == 1 then
+                    CharacterCreator.Data.outfit = moutfits[moutfitDefault]
+                else
+                    CharacterCreator.Data.outfit = foutfits[foutfitDefault]
+                end
+
                 RefreshModel()
             end
         })

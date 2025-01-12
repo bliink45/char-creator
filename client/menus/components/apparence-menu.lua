@@ -108,7 +108,7 @@ CharacterCreator.Apparence = {
             end,
             onListChange = function(index, indexValue)
                 CharacterCreator.Data.Model.apparence.frickles.index = index
-                -- TODO
+                SetPedHeadOverlay(PlayerPedId(), 9, index - 1, 1.0)
             end
         })
         RageUI.List('Rides', { 1, 2, 3, 4 }, CharacterCreator.Data.Model.apparence.wrinkles.index, nil, {}, true, {
@@ -117,7 +117,7 @@ CharacterCreator.Apparence = {
             end,
             onListChange = function(index, indexValue)
                 CharacterCreator.Data.Model.apparence.wrinkles.index = index
-                -- TODO
+                SetPedHeadOverlay(PlayerPedId(), 3, index - 1, 1.0)
             end
         })
         RageUI.List('Coups de soleil', { 1, 2, 3, 4 }, CharacterCreator.Data.Model.apparence.sunDamage.index, nil, {}, true, {
@@ -126,7 +126,7 @@ CharacterCreator.Apparence = {
             end,
             onListChange = function(index, indexValue)
                 CharacterCreator.Data.Model.apparence.sunDamage.index = index
-                -- TODO
+                SetPedHeadOverlay(PlayerPedId(), 7, index - 1, 1.0)
             end
         })
 

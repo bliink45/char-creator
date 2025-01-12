@@ -1,51 +1,28 @@
 CharacterCreator.Data.outfit = {
-    -- Structure to be defined
+    [6] = {0, 10},
+    [3] = {18, 0},
+    [11] = {64, 0},
+    [4] = {1, 0},
+    [8] = {2, 1}
 }
 
 CharacterCreator.Outfit = {
     menu = RageUI.CreateSubMenu(CharacterCreator.Main.menu, "Vêtements",
         "Tenue du personnage"),
     render = function()
-        RageUI.Button("Tenue 1", nil, {}, true, {
-            onActive = function()
-                -- set outfit index
-            end
-        })
-        RageUI.Button("Tenue 2", nil, {}, true, {
-            onActive = function()
-            end
-        })
-        RageUI.Button("Tenue 3", nil, {}, true, {
-            onActive = function()
-            end
-        })
-        RageUI.Button("Tenue 4", nil, {}, true, {
-            onActive = function()
-            end
-        })
-        RageUI.Button("Tenue 5", nil, {}, true, {
-            onActive = function()
-            end
-        })
-        RageUI.Button("Tenue 6", nil, {}, true, {
-            onActive = function()
-            end
-        })
-        RageUI.Button("Tenue 7", nil, {}, true, {
-            onActive = function()
-            end
-        })
-        RageUI.Button("Tenue 8", nil, {}, true, {
-            onActive = function()
-            end
-        })
-        RageUI.Button("Tenue 9", nil, {}, true, {
-            onActive = function()
-            end
-        })
-        RageUI.Button("Tenue 10", nil, {}, true, {
-            onActive = function()
-            end
-        })
+        outfits = moutfits
+
+        if not isMalePed() then
+            outfits = foutfits
+        end
+        
+        for outfitName, outfit in pairs(outfits) do
+            RageUI.Button(outfitName, nil, {}, true, {
+                onActive = function()
+                    CharacterCreator.Data.outfit = outfit
+                    UpdateOutfit()
+                end
+            })
+        end
     end
 }

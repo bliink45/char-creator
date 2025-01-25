@@ -7,6 +7,10 @@ CharacterCreator = {
         Identity = {},
         Model = {
             gender = nil
+        },
+        Outfit = {
+            name = nil,
+            clothes = {}
         }
     }
 }
@@ -19,9 +23,13 @@ function CharacterCreator.Main.initRenderers(menus)
     menus.Apparence.menu.EnableMouse = true
 
     CharacterCreator.Data.Model.gender = 1
+    CharacterCreator.Data.Outfit.name = moutfitDefault
+    CharacterCreator.Data.Outfit.clothes = moutfits[moutfitDefault]
 
     if not isMalePed() then
         CharacterCreator.Data.Model.gender = 2
+        CharacterCreator.Data.Outfit.name = foutfitDefault
+        CharacterCreator.Data.Outfit.clothes = foutfits[foutfitDefault]
     end
 
     CharacterCreator.Main.render = function()
@@ -31,10 +39,14 @@ function CharacterCreator.Main.initRenderers(menus)
                 CharacterCreator.Data.Model.gender = index
 
                 if index == 1 then
-                    CharacterCreator.Data.outfit = moutfits[moutfitDefault]
+                    CharacterCreator.Data.Outfit.name = moutfitDefault
+                    CharacterCreator.Data.Outfit.clothes = moutfits[moutfitDefault]
                 else
-                    CharacterCreator.Data.outfit = foutfits[foutfitDefault]
+                    CharacterCreator.Data.Outfit.name = foutfitDefault
+                    CharacterCreator.Data.Outfit.clothes = foutfits[foutfitDefault]
                 end
+
+                CharacterCreator.Outfit.index = 1
 
                 RefreshModel()
             end
@@ -45,8 +57,7 @@ function CharacterCreator.Main.initRenderers(menus)
         true, {}, menus.Features.menu)
     RageUI.Button("Apparence", "Apparence du personnage", {}, true, {},
         menus.Apparence.menu)
-    RageUI.Button("Tenue", "Tenue du personnage", {}, true, {},
-        menus.Outfit.menu)
+    menus.Outfit.render()
     RageUI.Button("Informations", "Identité du personnage", {}, true, {},
         menus.Informations.menu)
         RageUI.Button(" Enregistrer et quitter",

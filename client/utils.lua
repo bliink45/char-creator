@@ -8,72 +8,174 @@ models = { 'mp_m_freemode_01', 'mp_f_freemode_01' }
 moms = {"21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "45"} -- female heads
 dads = {"00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "42", "43", "44"} -- male heads
 
-moutfitDefault = "Tenue 1"
-foutfitDefault = "Tenue 1"
+moutfitsLabels = { 'Décontracté', 'Formel', 'Costard', 'Motard', 'Grand Froid' }
+foutifitsLabels = { 'Décontracté', 'Formel', 'Motarde', 'Grand Froid', 'Robe' }
+
+moutfitDefault = 'Décontracté'
+foutfitDefault = 'Décontracté'
 
 moutfits = {
-	["Tenue 1"] = {
-		[6] = {0, 10},
-		[3] = {18, 0},
-		[11] = {64, 0},
-		[4] = {1, 0},
-		[8] = {2, 1}
+	['Décontracté'] = {
+		[1] = {0, 0}, -- Masque
+		[3] = {0, 0}, -- Torse (UpperBody)
+		[4] = {0, 3}, -- Pantalon
+		[5] = {0, 0}, -- Sac
+		[6] = {1, 1}, -- Chaussures
+		[7] = {0, 0}, -- Accessoire
+		[8] = {15, 0}, -- Sous t-shirt (Shirt Accesory)
+		[9] = {0, 0}, -- Gilet pare-balles
+		[10] = {0, 0}, -- Badge Logo 
+		[11] = {0, 4}, -- Torse 2 (Shirt Overlay)
+
+		[12] = {0, 0}, -- Chapeau
+		[13] = {0, 0}, -- Lunettes
+		[14] = {0, 0} -- Oreilles
 	},
-	["Tenue 2"] = {
-		[6] = {0, 10},
-		[3] = {52, 0},
-		[11] = {0, 0},
-		[4] = {0, 0}
+	['Formel'] = {
+		[1] = {0, 0}, -- Masque
+		[3] = {11, 0}, -- Torse (UpperBody)
+		[4] = {10, 0}, -- Pantalon
+		[5] = {0, 0}, -- Sac
+		[6] = {15, 0}, -- Chaussures
+		[7] = {0, 0}, -- Accessoire
+		[8] = {150, 0}, -- Sous t-shirt (Shirt Accesory)
+		[9] = {0, 0}, -- Gilet pare-balles
+		[10] = {0, 0}, -- Badge Logo 
+		[11] = {72, 2}, -- Torse 2 (Shirt Overlay)
+
+		[12] = {0, 0}, -- Chapeau
+		[13] = {6, 4}, -- Lunettes
+		[14] = {0, 0} -- Oreilles
 	},
-	["Tenue 3"] = {
-		[6] = {25, 0},
-		[8] = {15, 0},
-		[11] = {55, 0},
-		[3] = {52, 0},
-		[4] = {35, 0}
+	['Costard'] = {
+		[1] = {0, 0}, -- Masque
+		[3] = {4, 0}, -- Torse (UpperBody)
+		[4] = {10, 0}, -- Pantalon
+		[5] = {0, 0}, -- Sac
+		[6] = {10, 0}, -- Chaussures
+		[7] = {38, 0}, -- Accessoire
+		[8] = {178, 0}, -- Sous t-shirt (Shirt Accesory)
+		[9] = {0, 0}, -- Gilet pare-balles
+		[10] = {0, 0}, -- Badge Logo 
+		[11] = {4, 0}, -- Torse 2 (Shirt Overlay)
+
+		[12] = {0, 0}, -- Chapeau
+		[13] = {0, 0}, -- Lunettes
+		[14] = {0, 0} -- Oreilles
 	},
-	["Tenue 4"] = {
-		[11] = {47, 0},
-		[4] = {0, 0},
-		[6] = {0, 10},
-		[3] = {52, 0},
-		[8] = {15, 0}
+	['Motard'] = {
+		[1] = {0, 0}, -- Masque
+		[3] = {4, 0}, -- Torse (UpperBody)
+		[4] = {0, 4}, -- Pantalon
+		[5] = {0, 0}, -- Sac
+		[6] = {24, 0}, -- Chaussures
+		[7] = {17, 0}, -- Accessoire
+		[8] = {0, 2}, -- Sous t-shirt (Shirt Accesory)
+		[9] = {0, 0}, -- Gilet pare-balles
+		[10] = {0, 0}, -- Badge Logo 
+		[11] = {172, 1}, -- Torse 2 (Shirt Overlay)
+
+		[12] = {0, 0}, -- Chapeau
+		[13] = {0, 0}, -- Lunettes
+		[14] = {0, 0} -- Oreilles
+	},
+	['Grand Froid'] = {
+		[1] = {0, 0}, -- Masque
+		[3] = {1, 0}, -- Torse (UpperBody)
+		[4] = {9, 7}, -- Pantalon
+		[5] = {0, 0}, -- Sac
+		[6] = {27, 0}, -- Chaussures
+		[7] = {0, 0}, -- Accessoire
+		[8] = {173, 0}, -- Sous t-shirt (Shirt Accesory)
+		[9] = {0, 0}, -- Gilet pare-balles
+		[10] = {0, 0}, -- Badge Logo 
+		[11] = {167, 3}, -- Torse 2 (Shirt Overlay)
+
+		[12] = {0, 0}, -- Chapeau
+		[13] = {0, 0}, -- Lunettes
+		[14] = {0, 0} -- Oreilles
 	}
 }
 foutfits = {
-	["Tenue 1"] = {
-		[3] = {60, 0},
-		[11] = {8, 2},
-		[8] = {0, 6},
-		[4] = {11, 1},
-		[6] = {4, 0}
+	['Décontracté'] = {
+		[1] = {0, 0}, -- Masque
+		[3] = {15, 0}, -- Torse (UpperBody)
+		[4] = {75, 0}, -- Pantalon
+		[5] = {0, 0}, -- Sac
+		[6] = {132, 0}, -- Chaussures
+		[7] = {0, 0}, -- Accessoire
+		[8] = {15, 0}, -- Sous t-shirt (Shirt Accesory)
+		[9] = {0, 0}, -- Gilet pare-balles
+		[10] = {0, 0}, -- Badge Logo 
+		[11] = {169, 0}, -- Torse 2 (Shirt Overlay)
+
+		[12] = {0, 0}, -- Chapeau
+		[13] = {0, 0}, -- Lunettes
+		[14] = {0, 0} -- Oreilles
 	},
-	["Tenue 2"] = {
-		[6] = {4, 0},
-		[3] = {64, 0},
-		[11] = {31, 0},
-		[4] = {25, 0},
-		[8] = {5, 0}
+	['Formel'] = {
+		[1] = {0, 0}, -- Masque
+		[3] = {3, 0}, -- Torse (UpperBody)
+		[4] = {4, 3}, -- Pantalon
+		[5] = {0, 0}, -- Sac
+		[6] = {29, 0}, -- Chaussures
+		[7] = {0, 0}, -- Accessoire
+		[8] = {217, 0}, -- Sous t-shirt (Shirt Accesory)
+		[9] = {0, 0}, -- Gilet pare-balles
+		[10] = {0, 0}, -- Badge Logo 
+		[11] = {7, 0}, -- Torse 2 (Shirt Overlay)
+
+		[12] = {0, 0}, -- Chapeau
+		[13] = {0, 0}, -- Lunettes
+		[14] = {0, 0} -- Oreilles
 	},
-	["Tenue 3"] = {
-		[6] = {0, 0},
-		[3] = {63, 0},
-		[11] = {0, 0},
-		[4] = {0, 0}
+	['Grand Froid'] = {
+		[1] = {0, 0}, -- Masque
+		[3] = {5, 0}, -- Torse (UpperBody)
+		[4] = {0, 0}, -- Pantalon
+		[5] = {0, 0}, -- Sac
+		[6] = {28, 0}, -- Chaussures
+		[7] = {0, 0}, -- Accessoire
+		[8] = {59, 1}, -- Sous t-shirt (Shirt Accesory)
+		[9] = {0, 0}, -- Gilet pare-balles
+		[10] = {0, 0}, -- Badge Logo 
+		[11] = {65, 0}, -- Torse 2 (Shirt Overlay)
+
+		[12] = {0, 0}, -- Chapeau
+		[13] = {0, 0}, -- Lunettes
+		[14] = {0, 0} -- Oreilles
 	},
-	["Tenue 4"] = {
-		[6] = {25, 0},
-		[8] = {15, 0},
-		[11] = {48, 0},
-		[3] = {70, 0},
-		[4] = {34, 0}
+	['Motarde'] = {
+		[1] = {0, 0}, -- Masque
+		[3] = {14, 0}, -- Torse (UpperBody)
+		[4] = {43, 0}, -- Pantalon
+		[5] = {0, 0}, -- Sac
+		[6] = {10, 0}, -- Chaussures
+		[7] = {38, 0}, -- Accessoire
+		[8] = {201, 1}, -- Sous t-shirt (Shirt Accesory)
+		[9] = {0, 0}, -- Gilet pare-balles
+		[10] = {0, 0}, -- Badge Logo 
+		[11] = {385, 1}, -- Torse 2 (Shirt Overlay)
+
+		[12] = {0, 0}, -- Chapeau
+		[13] = {0, 0}, -- Lunettes
+		[14] = {0, 0} -- Oreilles
 	},
-	["Tenue 5"] = {
-		[6] = {1, 1},
-		[11] = {9, 9},
-		[4] = {11, 1},
-		[3] = {67, 0},
-		[8] = {8, 0}
+	['Robe'] = {
+		[1] = {0, 0}, -- Masque
+		[3] = {11, 0}, -- Torse (UpperBody)
+		[4] = {14, 0}, -- Pantalon
+		[5] = {0, 0}, -- Sac
+		[6] = {42, 0}, -- Chaussures
+		[7] = {0, 0}, -- Accessoire
+		[8] = {15, 0}, -- Sous t-shirt (Shirt Accesory)
+		[9] = {0, 0}, -- Gilet pare-balles
+		[10] = {0, 0}, -- Badge Logo 
+		[11] = {322, 0}, -- Torse 2 (Shirt Overlay)
+
+		[12] = {0, 0}, -- Chapeau
+		[13] = {0, 0}, -- Lunettes
+		[14] = {0, 0} -- Oreilles
 	}
 }
 
@@ -149,7 +251,7 @@ function UpdateFeatures()
 end
 
 function UpdateOutfit()
-    for k, v in pairs(CharacterCreator.Data.outfit) do
+    for k, v in pairs(CharacterCreator.Data.Outfit.clothes) do
         SetPedComponentVariation(PlayerPedId(), k, v[1], v[2], 2)
     end
 end
@@ -181,9 +283,6 @@ function AnimCam()
 	
     -- Refresh model
     RefreshModel()
-
-    -- ChangeComponents
-
 
 	local cam2 = CreateCamWithParams("DEFAULT_SCRIPTED_CAMERA", Camera['body'].x, Camera['body'].y, Camera['body'].z, 0.00, 0.00, 0.00, Camera['body'].fov, false, 0)
     SetCamActive(cam2, true)

@@ -29,7 +29,25 @@ CharacterCreator.Save = {
                         Citizen.Wait(50)
                     end
 
-                    SyncV.Core.PersonageManager.create(SyncV.Utility.encodeJson(CharacterCreator.Data.Identity), SyncV.Utility.encodeJson(CharacterCreator.Data.Model), 8973)
+                    local personageId = SyncV.Core.PersonageManager.create(
+                        SyncV.Utility.encodeJson(CharacterCreator.Data.Identity),
+                        SyncV.Utility.encodeJson(CharacterCreator.Data.Model),
+                        nil)
+
+                    local outfitId = SyncV.Core.OutfitManager.create(
+                        personageId,
+                        CharacterCreator.Data.Outfit.name,
+                        SyncV.Utility.encodeJson(CharacterCreator.Data.Outfit.clothes)
+                    )
+
+                    SyncV.Core.PersonageManager.update(personageId, { ["currentOutfit"]=outfitId })
+
+                    local playerEntity = SyncV.Core.SessionManager.getPlayerByLicenseId(
+                            SyncV.Core.PlayerManager.getPlayerLicenseId()
+                    )
+
+                    SyncV.Core.PlayerManager.update(playerEntity.id, { ["currentPersonageId"]=personageId })
+
                     EndCharCreator()
                 end)
             end

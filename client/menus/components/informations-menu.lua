@@ -1,16 +1,18 @@
 CharacterCreator.Data.Identity.informations = {
     firstname = "",
     lastname = "",
-    birthday = "",
+    birthdate = {},
     nationality = "",
-    height = "",
-    weight = "",
+    height = 0,
+    weight = 0,
     background = "",
-} 
+}
+
+local informationsMenu = RageUI.CreateSubMenu(CharacterCreator.Main.menu, "Informations",
+        "Identité du personnage")
 
 CharacterCreator.Informations = {
-    menu = RageUI.CreateSubMenu(CharacterCreator.Main.menu, "Informations",
-        "Identité du personnage"),
+    menu = informationsMenu,
     render = function()
         RageUI.Button("Prénom(s)", nil, {RightLabel = '~b~'..CharacterCreator.Data.Identity.informations.firstname}, true, {
             onSelected = function()
@@ -22,24 +24,24 @@ CharacterCreator.Informations = {
                 CharacterCreator.Data.Identity.informations.lastname = Keyboard('Votre nom :', 30, CharacterCreator.Data.Identity.informations.lastname)
             end
         })
-        RageUI.Button("Date de naissance", nil, {RightLabel = '~b~'..CharacterCreator.Data.Identity.informations.birthday}, true, {
-            onSelected = function()
-                CharacterCreator.Data.Identity.informations.birthday = Keyboard('Votre anniversaire :', 30, CharacterCreator.Data.Identity.informations.birthday)
+        RageUI.Button("Date de naissance", nil, {RightLabel = getBirthdate()}, true, {},
+                CharacterCreator.Informations.SubMenu.Birthdate.menu)
+        RageUI.List('Nationalité', nationalityList, nationalityIndex, nil, {}, true, {
+            onListChange = function(index, indexValue)
+                nationalityIndex = index
+                CharacterCreator.Data.Identity.informations.nationality = indexValue
             end
         })
-        RageUI.Button("Nationalité", nil, {RightLabel = '~b~'..CharacterCreator.Data.Identity.informations.nationality}, true, {
-            onSelected = function()
-                CharacterCreator.Data.Identity.informations.nationality = Keyboard('Votre nationalité :', 30, CharacterCreator.Data.Identity.informations.nationality)
+        RageUI.List('Taille (cm)', heightList, heightIndex, nil, {}, true, {
+            onListChange = function(index, indexValue)
+                heightIndex = index
+                CharacterCreator.Data.Identity.informations.height = indexValue
             end
         })
-        RageUI.Button("Taille (cm)", nil, {RightLabel = '~b~'..CharacterCreator.Data.Identity.informations.height}, true, {
-            onSelected = function()
-                CharacterCreator.Data.Identity.informations.height = Keyboard('Votre taille :', 30, CharacterCreator.Data.Identity.informations.height)
-            end
-        })
-        RageUI.Button("Poids (kg)", nil, {RightLabel = '~b~'..CharacterCreator.Data.Identity.informations.weight}, true, {
-            onSelected = function()
-                CharacterCreator.Data.Identity.informations.weight = Keyboard('Votre poids :', 30, CharacterCreator.Data.Identity.informations.weight)
+        RageUI.List('Poids (kg)', weightList, weightIndex, nil, {}, true, {
+            onListChange = function(index, indexValue)
+                weightIndex = index
+                CharacterCreator.Data.Identity.informations.weight = indexValue
             end
         })
         RageUI.Button("Background", nil, {RightLabel = '~b~' .. CharacterCreator.Data.Identity.informations.background}, true, {
@@ -47,25 +49,31 @@ CharacterCreator.Informations = {
                 CharacterCreator.Data.Identity.informations.background = Keyboard('Votre background :', 5000, CharacterCreator.Data.Identity.informations.background)
             end
         })
-    end
+    end,
+    SubMenu = {
+        Birthdate = {
+            menu = RageUI.CreateSubMenu(informationsMenu, "Date de naissance",
+                    "Date de naissance"),
+            render = function()
+                RageUI.List('Jour', dayList, dayIndex, nil, {}, true, {
+                    onListChange = function(index, indexValue)
+                        dayIndex = index
+                        CharacterCreator.Data.Identity.informations.birthdate.day = string.format("%02d", indexValue)
+                    end
+                })
+                RageUI.List('Mois', monthList, monthIndex, nil, {}, true, {
+                    onListChange = function(index, indexValue)
+                        monthIndex = index
+                        CharacterCreator.Data.Identity.informations.birthdate.month = string.format("%02d", indexValue)
+                    end
+                })
+                RageUI.List('Année', yearList, yearIndex, nil, {}, true, {
+                    onListChange = function(index, indexValue)
+                        yearIndex = index
+                        CharacterCreator.Data.Identity.informations.birthdate.year = indexValue
+                    end
+                })
+            end
+        }
+    }
 }
-
-function Keyboard(TextEntry, MaxStringLenght, Example)
-    AddTextEntry('FMMC_KEY_TIP1', TextEntry)
-    blockinput = true
-    DisplayOnscreenKeyboard(1, "FMMC_KEY_TIP1", "", Example, "", "", "", MaxStringLenght)
-    while UpdateOnscreenKeyboard() ~= 1 and UpdateOnscreenKeyboard() ~= 2 do 
-        Wait(0)
-    end 
-        
-    if UpdateOnscreenKeyboard() ~= 2 then
-        local result = GetOnscreenKeyboardResult()
-        Wait(500)
-        blockinput = false
-        return result
-    else
-        Wait(500)
-        blockinput = false
-        return nil
-    end
-end

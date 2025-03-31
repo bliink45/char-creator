@@ -18,11 +18,7 @@ CharacterCreator.Data.Model.apparence = {
             primary =  {
                 MinimumIndex = 1,
                 CurrentIndex = 1
-            },
-            secondary =  {
-                MinimumIndex = 1,
-                CurrentIndex = 1
-            },
+            }
         }
     },
     bear = {
@@ -31,11 +27,7 @@ CharacterCreator.Data.Model.apparence = {
             primary = {
                 MinimumIndex = 1,
                 CurrentIndex = 1
-            },
-            secondary =  {
-                MinimumIndex = 1,
-                CurrentIndex = 1
-            },
+            }
         }
     },
     eyes = {
@@ -66,7 +58,7 @@ CharacterCreator.Apparence = {
                 currentColorPanel = CharacterCreator.Data.Model.apparence.hair.colors
                 currentPanelColour = RageUI.PanelColour.HairCut
             end,
-            onListChange = function(index, indexValue)
+            onListChange = function(index, _)
                 CharacterCreator.Data.Model.apparence.hair.index = index
                 SetPedComponentVariation(PlayerPedId(), 2, index - 1, 0, 2)
             end
@@ -77,7 +69,7 @@ CharacterCreator.Apparence = {
                 currentColorPanel = CharacterCreator.Data.Model.apparence.eyebrows.colors
                 currentPanelColour = RageUI.PanelColour.HairCut
             end,
-            onListChange = function(index, indexValue)
+            onListChange = function(index, _)
                 CharacterCreator.Data.Model.apparence.eyebrows.index = index
             end
         })
@@ -87,7 +79,7 @@ CharacterCreator.Apparence = {
                 currentColorPanel = CharacterCreator.Data.Model.apparence.bear.colors
                 currentPanelColour = RageUI.PanelColour.HairCut
             end,
-            onListChange = function(index, indexValue)
+            onListChange = function(index, _)
                 CharacterCreator.Data.Model.apparence.bear.index = index
                 SetPedHeadOverlay(PlayerPedId(), 1, index - 2, 1.0)
             end
@@ -97,7 +89,7 @@ CharacterCreator.Apparence = {
                 currentColorPanel = CharacterCreator.Data.Model.apparence.eyes.colors
                 currentPanelColour = RageUI.PanelColour.Eyes
             end,
-            onListChange = function(index, indexValue)
+            onListChange = function(index, _)
                 CharacterCreator.Data.Model.apparence.eyes.index = index
                 SetPedEyeColor(PlayerPedId(), index - 1, 0, 1)
             end
@@ -106,7 +98,7 @@ CharacterCreator.Apparence = {
             onActive = function()
                 currentColorPanel = CharacterCreator.Data.Model.apparence.frickles.colors
             end,
-            onListChange = function(index, indexValue)
+            onListChange = function(index, _)
                 CharacterCreator.Data.Model.apparence.frickles.index = index
                 SetPedHeadOverlay(PlayerPedId(), 9, index - 1, 1.0)
             end
@@ -115,7 +107,7 @@ CharacterCreator.Apparence = {
             onActive = function()
                 currentColorPanel = CharacterCreator.Data.Model.apparence.wrinkles.colors
             end,
-            onListChange = function(index, indexValue)
+            onListChange = function(index, _)
                 CharacterCreator.Data.Model.apparence.wrinkles.index = index
                 SetPedHeadOverlay(PlayerPedId(), 3, index - 1, 1.0)
             end
@@ -124,7 +116,7 @@ CharacterCreator.Apparence = {
             onActive = function()
                 currentColorPanel = CharacterCreator.Data.Model.apparence.sunDamage.colors
             end,
-            onListChange = function(index, indexValue)
+            onListChange = function(index, _)
                 CharacterCreator.Data.Model.apparence.sunDamage.index = index
                 SetPedHeadOverlay(PlayerPedId(), 7, index - 1, 1.0)
             end

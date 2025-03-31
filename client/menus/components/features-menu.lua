@@ -5,7 +5,11 @@ CharacterCreator.Data.Model.features = { nose = { x = 0.5, y = 0.5 }, noseProfil
             jaws = { x = 0.5, y = 0.5 }, chin = { x = 0.5, y = 0.5 },
             chinSize = { x = 0.5, y = 0.5 }, neckThickness = { x = 0.5, y = 0.5 }}
 
+currentFeature = "NOSE"
 currentGrid = CharacterCreator.Data.Model.features.nose
+currentGridText = {
+    left = "Gauche", right = "Droite", top = "Haut", bottom = "Bas"
+}
 
 CharacterCreator.Features = {
     menu = RageUI.CreateSubMenu(CharacterCreator.Main.menu,
@@ -13,6 +17,7 @@ CharacterCreator.Features = {
     render = function()
         RageUI.Button("Nez", nil, {}, true, {
             onActive = function()
+                currentFeature = "NOSE"
                 currentGrid = CharacterCreator.Data.Model.features.nose
                 SetPedFaceFeature(PlayerPedId(), 0, CharacterCreator.Data.Model.features.nose.x)
                 SetPedFaceFeature(PlayerPedId(), 1, CharacterCreator.Data.Model.features.nose.y)
@@ -20,6 +25,7 @@ CharacterCreator.Features = {
         })
         RageUI.Button("Profil du nez", nil, {}, true, {
             onActive = function()
+                currentFeature = "NOSE_PROFILE"
                 currentGrid = CharacterCreator.Data.Model.features.noseProfile
                 SetPedFaceFeature(PlayerPedId(), 2, CharacterCreator.Data.Model.features.noseProfile.x)
                 SetPedFaceFeature(PlayerPedId(), 3, CharacterCreator.Data.Model.features.noseProfile.y)
@@ -27,6 +33,7 @@ CharacterCreator.Features = {
         })
         RageUI.Button("Pointe du nez", nil, {}, true, {
             onActive = function()
+                currentFeature = "NOSE_PEAK"
                 currentGrid = CharacterCreator.Data.Model.features.nosePeak
                 SetPedFaceFeature(PlayerPedId(), 4, CharacterCreator.Data.Model.features.nosePeak.x)
                 SetPedFaceFeature(PlayerPedId(), 5, CharacterCreator.Data.Model.features.nosePeak.y)
@@ -34,6 +41,7 @@ CharacterCreator.Features = {
         })
         RageUI.Button("Sourcils", nil, {}, true, {
             onActive = function()
+                currentFeature = "EYEBROWS"
                 currentGrid = CharacterCreator.Data.Model.features.eyebrows
                 SetPedFaceFeature(PlayerPedId(), 7, CharacterCreator.Data.Model.features.eyebrows.x)
                 SetPedFaceFeature(PlayerPedId(), 6, CharacterCreator.Data.Model.features.eyebrows.y)
@@ -41,31 +49,36 @@ CharacterCreator.Features = {
         })
         RageUI.Button("Pommettes", nil, {}, true, {
             onActive = function()
+                currentFeature = "CHEEKBONES"
                 currentGrid = CharacterCreator.Data.Model.features.cheekbones
                 SetPedFaceFeature(PlayerPedId(), 8, CharacterCreator.Data.Model.features.cheekbones.x)
                 SetPedFaceFeature(PlayerPedId(), 9, CharacterCreator.Data.Model.features.cheekbones.y)
             end
         })
-        RageUI.Button("Joues", nil, {}, true, { -- Mettre un grid simple.
+        RageUI.Button("Joues", nil, {}, true, {
             onActive = function()
+                currentFeature = "CHEEKS"
                 currentGrid = CharacterCreator.Data.Model.features.cheeks
                 SetPedFaceFeature(PlayerPedId(), 10, CharacterCreator.Data.Model.features.cheeks.x) 
             end
         })
-        RageUI.Button("Yeux", nil, {}, true, { -- Mettre un grid simple.
+        RageUI.Button("Yeux", nil, {}, true, {
             onActive = function()
+                currentFeature = "EYES"
                 currentGrid = CharacterCreator.Data.Model.features.eyes
-                SetPedFaceFeature(PlayerPedId(), 11, CharacterCreator.Data.Model.features.eyes.x)
+                SetPedFaceFeature(PlayerPedId(), 11, CharacterCreator.Data.Model.features.eyes.y)
             end
         })
-        RageUI.Button("Levres", nil, {}, true, { -- Mettre un grid simple.
+        RageUI.Button("Levres", nil, {}, true, {
             onActive = function()
+                currentFeature = "LIPS"
                 currentGrid = CharacterCreator.Data.Model.features.Lips
                 SetPedFaceFeature(PlayerPedId(), 12, CharacterCreator.Data.Model.features.Lips.x)
             end
         })
         RageUI.Button("Machoire", nil, {}, true, {
             onActive = function()
+                currentFeature = "JAWS"
                 currentGrid = CharacterCreator.Data.Model.features.jaws
                 SetPedFaceFeature(PlayerPedId(), 13, CharacterCreator.Data.Model.features.jaws.x)
                 SetPedFaceFeature(PlayerPedId(), 14, CharacterCreator.Data.Model.features.jaws.y)
@@ -73,6 +86,7 @@ CharacterCreator.Features = {
         })
         RageUI.Button("Menton", nil, {}, true, {
             onActive = function()
+                currentFeature = "CHIN"
                 currentGrid = CharacterCreator.Data.Model.features.chin
                 SetPedFaceFeature(PlayerPedId(), 15, CharacterCreator.Data.Model.features.chin.x)
                 SetPedFaceFeature(PlayerPedId(), 16, CharacterCreator.Data.Model.features.chin.y)
@@ -80,6 +94,7 @@ CharacterCreator.Features = {
         })
         RageUI.Button("Taille du Menton", nil, {}, true, {
             onActive = function()
+                currentFeature = "CHIN_SIZE"
                 currentGrid = CharacterCreator.Data.Model.features.chinSize
                 SetPedFaceFeature(PlayerPedId(), 17, CharacterCreator.Data.Model.features.chinSize.x)
                 SetPedFaceFeature(PlayerPedId(), 18, CharacterCreator.Data.Model.features.chinSize.y)
@@ -87,16 +102,32 @@ CharacterCreator.Features = {
         })
         RageUI.Button("Epaisseur du cou", nil, {}, true, { -- Mettre un grid simple.
             onActive = function()
+                currentFeature = "NECK_THICKNESS"
                 currentGrid = CharacterCreator.Data.Model.features.neckThickness
                 SetPedFaceFeature(PlayerPedId(), 19, CharacterCreator.Data.Model.features.neckThickness.x)
             end
         })
-        RageUI.Grid(currentGrid.x, currentGrid.y, "Haut", "Bas", -- Noms adaptatifs en fonction du grid.
-                "Etroit", "Large", {
-                    onPositionChange = function(X, Y)
-                        currentGrid.x = X
-                        currentGrid.y = Y
-                    end
-                }, RageUI.CurrentMenu.Index)
+
+        if currentFeature == "CHEEKS" or currentFeature == "NECK_THICKNESS" or currentFeature == "LIPS" then
+            RageUI.GridHorizontal(currentGrid.x, currentGridText.left, currentGridText.right, {
+                onPositionChange = function(X, _)
+                    currentGrid.x = X
+                end
+            }, RageUI.CurrentMenu.Index)
+        elseif currentFeature == "EYES" then
+            RageUI.GridVertical(currentGrid.y, currentGridText.top, currentGridText.bottom, {
+                onPositionChange = function(_, Y)
+                    currentGrid.y = Y
+                end
+            }, RageUI.CurrentMenu.Index)
+        else
+            RageUI.Grid(currentGrid.x, currentGrid.y, currentGridText.top, currentGridText.bottom, -- Noms adaptatifs en fonction du grid.
+                    currentGridText.left, currentGridText.right, {
+                        onPositionChange = function(X, Y)
+                            currentGrid.x = X
+                            currentGrid.y = Y
+                        end
+                    }, RageUI.CurrentMenu.Index)
+        end
     end
 }

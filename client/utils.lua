@@ -358,18 +358,19 @@ end
 
 function UpdateApparence()
     -- Hair
-    SetPedComponentVariation(PlayerPedId(), 2, CharacterCreator.Data.Model.apparence.hair.index - 1, 0, 2)
+    SetPedComponentVariation(PlayerPedId(), 2, CharacterCreator.Data.Model.apparence.hair.index - 1  , 0, 2)
     SetPedHairColor(PlayerPedId(), CharacterCreator.Data.Model.apparence.hair.colors.primary.CurrentIndex - 1, 0)
 
+	-- Eyebrows
+	SetPedHeadOverlay(PlayerPedId(), 2, CharacterCreator.Data.Model.apparence.eyebrows.index - 1, CharacterCreator.Data.Model.apparence.eyebrows.opacity)
+	SetPedHeadOverlayColor(PlayerPedId(), 2, 1,	CharacterCreator.Data.Model.apparence.eyebrows.colors.primary.CurrentIndex - 1, 0)
+
     -- Bear
-    SetPedHeadOverlay(PlayerPedId(), 1, CharacterCreator.Data.Model.apparence.bear.index - 2, 1.0)
-    SetPedHeadOverlayColor(PlayerPedId(), 1, 1,	CharacterCreator.Data.Model.apparence.bear.colors.primary.CurrentIndex - 1, 0)
+    SetPedHeadOverlay(PlayerPedId(), 1, CharacterCreator.Data.Model.apparence.beard.index - 1, CharacterCreator.Data.Model.apparence.beard.opacity)
+    SetPedHeadOverlayColor(PlayerPedId(), 1, 1,	CharacterCreator.Data.Model.apparence.beard.colors.primary.CurrentIndex - 1, 0)
 
     -- Eyes
     SetPedEyeColor(PlayerPedId(), CharacterCreator.Data.Model.apparence.eyes.index - 1, 0, 1)
-
-    -- Eyebrows
-    SetPedHeadOverlayColor(PlayerPedId(), 2, 1,	CharacterCreator.Data.Model.apparence.eyebrows.colors.primary.CurrentIndex - 1, 0)
 end
 
 function UpdateFeatures()

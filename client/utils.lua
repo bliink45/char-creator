@@ -255,6 +255,25 @@ function setCam(camera)
 	SetCamActiveWithInterp(newCam, currentCam, 250, true, true)
 end
 
+function disableForeignEntities()
+	for i=1,256 do
+		if NetworkIsPlayerActive(i) then
+			SetEntityVisible(GetPlayerPed(i), false, false)
+			SetEntityNoCollisionEntity(GetPlayerPed(i), PlayerPedId(), false)
+		end
+	end
+	SetEntityVisible(PlayerPedId(), true, true)
+end
+
+function enableForeignEntities()
+	for i=1,256 do
+		if NetworkIsPlayerActive(i) then
+			SetEntityVisible(GetPlayerPed(i), true, true)
+			SetEntityNoCollisionEntity(GetPlayerPed(i), PlayerPedId(), true)
+		end
+	end
+end
+
 function disableMovement()
 	-- Disable movement (WASD on QWERTY / ZQSD on AZERTY)
 	DisableControlAction(0, 30, true) -- Move Left (Q on AZERTY / A on QWERTY)
@@ -440,7 +459,6 @@ function AnimCam()
 end
 
 function EndCharCreator()
-    CloseMenu()
 	FreezeEntityPosition(PlayerPedId(), false)
 
 	if CharacterCreator.Data.Model.gender == 1 then
@@ -454,6 +472,8 @@ function EndCharCreator()
 	Citizen.Wait(4000)
 	DoScreenFadeOut(1000)
 	Citizen.Wait(2000)
+	CloseMenu()
+	enableForeignEntities()
     enable = false
     RenderScriptCams(false,  false,  0,  true,  true)
 	EnableAllControlActions(0)

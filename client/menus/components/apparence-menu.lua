@@ -143,7 +143,7 @@ CharacterCreator.Apparence = {
                             SetPedHairColor(PlayerPedId(), currentApparence.colors.primary.CurrentIndex - 1, currentApparence.colors.secondary.CurrentIndex - 1)
                         elseif currentApparence.name == 'EYEBROWS' then
                             SetPedHeadOverlayColor(PlayerPedId(), 2, 1,	currentApparence.colors.primary.CurrentIndex - 1, 0)
-                        elseif currentApparence.name == 'BEARDS' then
+                        elseif currentApparence.name == 'BEARD' then
                             SetPedHeadOverlayColor(PlayerPedId(), 1, 1,	currentApparence.colors.primary.CurrentIndex - 1, 0)
                         end
                     end

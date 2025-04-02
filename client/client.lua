@@ -1,7 +1,5 @@
-enable = false
-
 RegisterCommand("char_creator:anim", function()
-    enable = true
+    playerIsolated = true
 	DisplayRadar(false)
     AnimCam()
     DisplayMenu()
@@ -9,7 +7,7 @@ end, false)
 
 Citizen.CreateThread(function()
     while true do
-        if (enable) then
+        if playerIsolated then
             disableMovement()
             disableForeignEntities()
         end

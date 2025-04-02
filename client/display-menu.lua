@@ -15,15 +15,6 @@ RegisterCommand("char_creator:open", function()
     DisplayMenu()
 end, false)
 
-Citizen.CreateThread(function()
-    while true do
-        if openMenu then
-            CharacterCreator.display()
-        end
-        Citizen.Wait(0)
-    end
-end)
-
 function CharacterCreator.display()
     for _, UI in pairs(CharacterCreator) do
         if type(UI) == 'table' then
@@ -36,4 +27,13 @@ function CharacterCreator.display()
         end
     end
 end
+
+Citizen.CreateThread(function()
+    while true do
+        if openMenu then
+            CharacterCreator.display()
+        end
+        Citizen.Wait(0)
+    end
+end)
 

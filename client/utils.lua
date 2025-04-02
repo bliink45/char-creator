@@ -3,6 +3,8 @@ SyncV = exports["sync-v"]:getSyncV()
 local initpos
 cam, cam2, cam3, camSkin, isCameraActive = nil, nil, nil, nil, nil
 
+playerIsolated = false
+
 models = { 'mp_m_freemode_01', 'mp_f_freemode_01' }
 
 moms = {"21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "45"} -- female heads
@@ -287,6 +289,9 @@ function disableMovement()
 	DisableControlAction(0, 21, true) -- Sprint (Shift)
 	DisableControlAction(0, 44, true) -- Jump (Space)
 	DisableControlAction(0, 36, true) -- Crouch (Ctrl)
+
+	DisableControlAction(0, 24, true) -- Disable left-click (Attack)
+	DisableControlAction(0, 25, true) -- Disable right-click (Aim)
 end
 
 function Keyboard(TextEntry, MaxStringLenght, Example)
@@ -438,8 +443,7 @@ function AnimCam()
     DoScreenFadeIn(2000)
     SetEntityCoords(PlayerPedId(), 405.59, -997.18, -99.00, 0.0, 0.0, 0.0, true)
     SetEntityHeading(PlayerPedId(), 90.00)
-   
-    -- TriggerEvent('skinchanger:loadSkin', {sex = 0})
+
     Citizen.Wait(500)
     
     local cam3 = CreateCamWithParams("DEFAULT_SCRIPTED_CAMERA", 402.99, -998.02, -99.00, 0.00, 0.00, 0.00, 50.00, false, 0)
@@ -456,6 +460,7 @@ function AnimCam()
     	SetEntityHeading(PlayerPedId(), 173.97)
     end
 
+	DisableAllControlActions(0)
     FreezeEntityPosition(PlayerPedId(), true)
 end
 
@@ -474,6 +479,7 @@ function EndCharCreator()
 	DoScreenFadeOut(1000)
 	Citizen.Wait(2000)
 	CloseMenu()
+	playerIsolated = false
 	enableForeignEntities()
     enable = false
     RenderScriptCams(false,  false,  0,  true,  true)

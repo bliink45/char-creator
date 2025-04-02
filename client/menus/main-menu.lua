@@ -36,6 +36,7 @@ function CharacterCreator.Main.initRenderers(menus)
         RageUI.List("Modèle", genders, CharacterCreator.Data.Model.gender,
         "Sexe de votre personnage", {}, true, {
             onListChange = function(index, value)
+                setCam("body")
                 CharacterCreator.Data.Model.gender = index
 
                 if index == 1 then
@@ -51,18 +52,31 @@ function CharacterCreator.Main.initRenderers(menus)
                 RefreshModel()
             end
         })
-    RageUI.Button("Hérédité", "Parents du personnage", {}, true, {},
-        menus.Heredity.menu)
-    RageUI.Button("Traits du visage", "Détails faciaux du personnage", {},
-        true, {}, menus.Features.menu)
-    RageUI.Button("Apparence", "Apparence du personnage", {}, true, {},
-        menus.Apparence.menu)
-    menus.Outfit.render()
-    RageUI.Button("Informations", "Identité du personnage", {}, true, {},
-        menus.Informations.menu)
-        RageUI.Button(" Enregistrer et quitter",
-        "Sélectionnez pour enregistrer votre personnage",
-        {RightLabel = ">", Color = {100, 119, 171, 120,
-        HightLightColor = {100, 119, 171, 120}}}, true, {}, menus.Save.menu)
+        RageUI.Button("Hérédité", "Parents du personnage", {}, true, {
+            onSelected = function()
+                setCam("face")
+            end
+        },
+            menus.Heredity.menu)
+        RageUI.Button("Traits du visage", "Détails faciaux du personnage", {},
+            true, {
+                    onSelected = function()
+                        setCam("face")
+                    end
+                }, menus.Features.menu)
+        RageUI.Button("Apparence", "Apparence du personnage", {}, true, {
+            onSelected = function()
+                setCam("face")
+            end
+        },
+            menus.Apparence.menu)
+        menus.Outfit.render()
+        RageUI.Button("Informations", "Identité du personnage", {}, true, {}, menus.Informations.menu)
+        RageUI.Button(" Enregistrer et quitter", "Sélectionnez pour enregistrer votre personnage",
+        {RightLabel = ">", Color = {33, 66, 49, 255}}, true, {
+                    onSelected = function()
+                        setCam("body")
+                    end
+                }, menus.Save.menu)
     end
 end

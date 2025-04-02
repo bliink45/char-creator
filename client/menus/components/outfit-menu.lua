@@ -12,12 +12,13 @@ CharacterCreator.Outfit = {
 
         RageUI.List("Tenue", outfitsLabels, CharacterCreator.Outfit.index,
         "Tenue du personnage", {}, true, {
-            onListChange = function(index, value)
-                CharacterCreator.Outfit.index = index
-                CharacterCreator.Data.Outfit.name = value
-                CharacterCreator.Data.Outfit.clothes = outfits[value]
-                UpdateOutfit()
-            end
+                    onListChange = function(index, value)
+                        setCam("body")
+                        CharacterCreator.Outfit.index = index
+                        CharacterCreator.Data.Outfit.name = value
+                        CharacterCreator.Data.Outfit.clothes = outfits[value]
+                        UpdateOutfit()
+                    end
         })
     end
 }

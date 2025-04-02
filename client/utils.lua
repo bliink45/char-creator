@@ -184,15 +184,38 @@ local Camera = {
 	body = {x = 402.92, y = -1000.72, z = -99.01, fov = 30.00},
 }
 
-nationalityIndex = 1
+nationalityIndex = 5
 heightIndex = 1
 weightIndex = 1
 
 nationalityList = {
-	"Français", "Anglais", "Américain", "Espagnol", "Allemand",
-	"Italien", "Canadien", "Brésilien", "Chinois", "Japonais",
-	"Russe", "Australien", "Indien", "Mexicain", "Coréen",
-	"Portugais", "Argentin", "Néerlandais", "Suisse", "Suédois"
+	"Afghane", "Albanaise", "Algérienne", "Allemande", "Américaine", "Anglaise", "Angolaise",
+	"Argentine", "Arménienne", "Australienne", "Autrichienne", "Azerbaïdjanaise", "Bahamienne",
+	"Bahreïnienne", "Bangladaise", "Barbadienne", "Belge", "Bélizienne", "Béninoise", "Bhoutanaise",
+	"Biélorusse", "Birmane", "Bolivienne", "Bosnienne", "Botswanaise", "Brésilienne", "Britannique",
+	"Bulgare", "Burkinabè", "Burundaise", "Cambodgienne", "Camerounaise", "Canadienne", "Cap-Verdienne",
+	"Centrafricaine", "Chadienne", "Chilienne", "Chinoise", "Chypriote", "Colombienne", "Comorienne",
+	"Congolaise", "Costaricienne", "Croate", "Cubaine", "Danoise", "Djiboutienne", "Dominicaine",
+	"Dominiquaise", "Égyptienne", "Émirienne", "Équatorienne", "Érythréenne", "Espagnole", "Estonienne",
+	"Éthiopienne", "Fidjienne", "Finlandaise", "Française", "Gabonaise", "Gambienne", "Géorgienne",
+	"Ghanéenne", "Grenadienne", "Guatémaltèque", "Guinéenne", "Guyanaise", "Haïtienne", "Hondurienne",
+	"Hongroise", "Indienne", "Indonésienne", "Iranienne", "Irakienne", "Irlandaise", "Islandaise",
+	"Israélienne", "Italienne", "Ivoirienne", "Jamaïcaine", "Japonaise", "Jordanienne", "Kazakhe",
+	"Kényane", "Kirghize", "Kiribatienne", "Kosovare", "Koweïtienne", "Laotienne", "Lesothane",
+	"Lettone", "Libanaise", "Libérienne", "Libyenne", "Liechtensteinoise", "Lituanienne", "Luxembourgeoise",
+	"Macédonienne", "Malaisienne", "Malawienne", "Maldivienne", "Malgache", "Malienne", "Maltaise",
+	"Marocaine", "Marshallaise", "Mauricienne", "Mauritanienne", "Mexicaine", "Micronésienne",
+	"Moldave", "Monégasque", "Mongole", "Monténégrine", "Mozambicaine", "Namibienne", "Nauruanne",
+	"Néerlandaise", "Néo-Zélandaise", "Népalaise", "Nicaraguayenne", "Nigérienne", "Nigériane",
+	"Norvégienne", "Omanaise", "Ougandaise", "Ouzbek", "Pakistanaise", "Palestinienne", "Panaméenne",
+	"Papouane", "Paraguayenne", "Péruvienne", "Philippine", "Polonaise", "Portugaise", "Qatarienne",
+	"Roumaine", "Russe", "Rwandaise", "Saint-Marinaise", "Saint-Lucienne", "Saint-Vincentaise",
+	"Salvadorienne", "Samoane", "São-Toméenne", "Saoudienne", "Sénégalaise", "Serbe", "Seychelloise",
+	"Sierra-Léonaise", "Singapourienne", "Slovaque", "Slovène", "Somalienne", "Soudanaise", "Sri-Lankaise",
+	"Suédoise", "Suisse", "Surinamaise", "Swazie", "Syrienne", "Tadjike", "Tanzanienne", "Tchadienne",
+	"Tchèque", "Thaïlandaise", "Togolaise", "Tonguienne", "Trinidadienne", "Tunisienne", "Turkmène",
+	"Turque", "Tuvaluane", "Ukrainienne", "Uruguayenne", "Vanuatuane", "Vénézuélienne", "Vietnamienne",
+	"Yéménite", "Zambienne", "Zimbabwéenne"
 }
 
 function createIntegerList(a, b)
@@ -225,6 +248,28 @@ frecklesList = createIntegerList(1, 18)
 ageingList = createIntegerList(1, 15)
 sunDamageList = createIntegerList(1, 11)
 
+function setCam(camera)
+	local currentCam = GetRenderingCam()
+	local newCam = CreateCamWithParams("DEFAULT_SCRIPTED_CAMERA", Camera[camera].x, Camera[camera].y, Camera[camera].z, 0.00, 0.00, 0.00, Camera[camera].fov, false, 0)
+	PointCamAtCoord(newCam, Camera[camera].x, Camera[camera].y, Camera[camera].z)
+	SetCamActiveWithInterp(newCam, currentCam, 250, true, true)
+end
+
+function disableMovement()
+	-- Disable movement (WASD on QWERTY / ZQSD on AZERTY)
+	DisableControlAction(0, 30, true) -- Move Left (Q on AZERTY / A on QWERTY)
+	DisableControlAction(0, 31, true) -- Move Forward (Z on AZERTY / W on QWERTY)
+	DisableControlAction(0, 32, true) -- Move Backward (S)
+	DisableControlAction(0, 33, true) -- Move Right (D)
+	DisableControlAction(0, 34, true) -- Strafe Left (A on AZERTY / Q on QWERTY)
+	DisableControlAction(0, 35, true) -- Strafe Right (D)
+
+	-- Disable other movement-related controls
+	DisableControlAction(0, 21, true) -- Sprint (Shift)
+	DisableControlAction(0, 44, true) -- Jump (Space)
+	DisableControlAction(0, 36, true) -- Crouch (Ctrl)
+end
+
 function Keyboard(TextEntry, MaxStringLenght, Example)
 	AddTextEntry('FMMC_KEY_TIP1', TextEntry)
 	blockinput = true
@@ -251,9 +296,17 @@ function getBirthdate()
 			or CharacterCreator.Data.Identity.informations.birthdate.year == nil then
 		return ""
 	else
-		return '~b~'..CharacterCreator.Data.Identity.informations.birthdate.day.."/"
+		return CharacterCreator.Data.Identity.informations.birthdate.day.."/"
 				..CharacterCreator.Data.Identity.informations.birthdate.month.."/"
 				..CharacterCreator.Data.Identity.informations.birthdate.year
+	end
+end
+
+function formatBackground()
+	if string.len(CharacterCreator.Data.Identity.informations.background) > 15 then
+		return string.sub(CharacterCreator.Data.Identity.informations.background, 1, 15).." [...]"
+	else
+		return CharacterCreator.Data.Identity.informations.background
 	end
 end
 
@@ -397,8 +450,10 @@ function EndCharCreator()
 		LoadAnim("mp_character_creation@lineup@female_a")
 		TaskPlayAnim(PlayerPedId(), "mp_character_creation@lineup@female_a", "outro", 0.225, 1.0, 6000, 0, 1, 0, 0, 0)
 	end
-	Citizen.Wait(5000)
+
+	Citizen.Wait(4000)
 	DoScreenFadeOut(1000)
+	Citizen.Wait(2000)
     enable = false
     RenderScriptCams(false,  false,  0,  true,  true)
 	EnableAllControlActions(0)

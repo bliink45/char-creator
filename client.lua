@@ -392,7 +392,7 @@ end
 
 local camSkin
 
-function CreateSkinCam(camera)
+function setCam(camera)
 	if camSkin then
 		local newCam = CreateCamWithParams("DEFAULT_SCRIPTED_CAMERA", Camera[camera].x, Camera[camera].y, Camera[camera].z, 0.00, 0.00, 0.00, Camera[camera].fov, false, 0)
 		PointCamAtCoord(newCam, Camera[camera].x, Camera[camera].y, Camera[camera].z)
@@ -401,7 +401,7 @@ function CreateSkinCam(camera)
 	else
 		camSkin = CreateCamWithParams("DEFAULT_SCRIPTED_CAMERA", Camera[camera].x, Camera[camera].y, Camera[camera].z, 0.00, 0.00, 0.00, Camera[camera].fov, false, 0)
 	    SetCamActive(cam2, true)
-	    RenderScriptCams(true, false, 2000, true, true) 
+	    RenderScriptCams(true, false, 2000, true, true)
 	end
 end
 

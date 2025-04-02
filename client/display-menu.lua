@@ -19,6 +19,7 @@ Citizen.CreateThread(function()
     while true do
         if openMenu then
             CharacterCreator.display()
+            disableMovement()
         end
         Citizen.Wait(0)
     end

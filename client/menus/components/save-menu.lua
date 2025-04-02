@@ -5,6 +5,8 @@ local loadingLabel = nil
 local loadingSpeed = nil
 local percent = nil
 
+local operationInProgress = false
+
 local LoadingStage = {
     { label = "Initialisation ...", speed = 0.0005 },
     { label = "Chargement des données ...", speed = 0.007 },
@@ -16,43 +18,48 @@ local LoadingStage = {
 CharacterCreator.Save = {
     menu = RageUI.CreateSubMenu(CharacterCreator.Main.menu, "Enregistrer", "Sauvegarder et quitter ?"),
     render = function()
-        RageUI.Button("Confirmer", nil, {RightLabel = ">", Color = {80, 176, 119, 120, HightLightColor = {80, 176, 119, 120}}}, true, {
+        RageUI.Button("Confirmer", nil, {RightLabel = ">", Color = {33, 66, 49, 255}}, true, {
             onSelected = function()
-                isCharCreated = true
-                loadingLabel = LoadingStage[1].label
-                loadingSpeed = LoadingStage[1].speed
-                percent = 0.0
-                loadingComplete = false
+                if (operationInProgress == false) then
+                    operationInProgress = true
+                    isCharCreated = true
+                    loadingLabel = LoadingStage[1].label
+                    loadingSpeed = LoadingStage[1].speed
+                    percent = 0.0
+                    loadingComplete = false
 
-                Citizen.CreateThread(function()
-                    while (not loadingComplete) do
-                        Citizen.Wait(50)
-                    end
+                    Citizen.CreateThread(function()
+                        while (not loadingComplete) do
+                            Citizen.Wait(50)
+                        end
 
-                    local personageId = SyncV.Core.PersonageManager.create(
-                        SyncV.Utility.encodeJson(CharacterCreator.Data.Identity),
-                        SyncV.Utility.encodeJson(CharacterCreator.Data.Model),
-                        nil)
+                        local personageId = SyncV.Core.PersonageManager.create(
+                                SyncV.Utility.encodeJson(CharacterCreator.Data.Identity),
+                                SyncV.Utility.encodeJson(CharacterCreator.Data.Model),
+                                nil)
 
-                    local outfitId = SyncV.Core.OutfitManager.create(
-                        personageId,
-                        CharacterCreator.Data.Outfit.name,
-                        SyncV.Utility.encodeJson(CharacterCreator.Data.Outfit.clothes)
-                    )
+                        local outfitId = SyncV.Core.OutfitManager.create(
+                                personageId,
+                                CharacterCreator.Data.Outfit.name,
+                                SyncV.Utility.encodeJson(CharacterCreator.Data.Outfit.clothes)
+                        )
 
-                    SyncV.Core.PersonageManager.update(personageId, { ["currentOutfit"]=outfitId })
+                        SyncV.Core.PersonageManager.update(personageId, { ["currentOutfit"]=outfitId })
 
-                    local playerEntity = SyncV.Core.SessionManager.getPlayerByLicenseId(
-                            SyncV.Core.PlayerManager.getPlayerLicenseId()
-                    )
+                        local playerEntity = SyncV.Core.SessionManager.getPlayerByLicenseId(
+                                SyncV.Core.PlayerManager.getPlayerLicenseId()
+                        )
 
-                    SyncV.Core.PlayerManager.update(playerEntity.id, { ["currentPersonageId"]=personageId })
+                        SyncV.Core.PlayerManager.update(playerEntity.id, { ["currentPersonageId"]=personageId })
+                        RageUI.Visible(CharacterCreator.Save.menu, false)
 
-                    EndCharCreator()
-                end)
+                        EndCharCreator()
+                        operationInProgress = false
+                    end)
+                end
             end
         })
-        RageUI.Button("Annuler", nil, {RightLabel = ">", Color = {220, 94, 94, 120, HightLightColor = {220, 94, 94, 120}}}, true, {}, CharacterCreator.Main.menu)
+        RageUI.Button("Annuler", nil, {RightLabel = ">", Color = {130, 34, 34, 255}}, true, {}, CharacterCreator.Main.menu)
         if isCharCreated and not loadingComplete then
             RageUI.PercentagePanel(percent or 0.0, loadingLabel, '', '', {})
             updateProgressBar()

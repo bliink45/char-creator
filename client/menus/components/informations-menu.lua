@@ -1,10 +1,10 @@
 CharacterCreator.Data.Identity.informations = {
     firstname = "",
     lastname = "",
-    birthdate = {},
-    nationality = "",
-    height = 0,
-    weight = 0,
+    birthdate = { day = "01", month = "01", year = "1950" },
+    nationality = "Américaine",
+    height = 150,
+    weight = 40,
     background = "",
 }
 
@@ -14,12 +14,12 @@ local informationsMenu = RageUI.CreateSubMenu(CharacterCreator.Main.menu, "Infor
 CharacterCreator.Informations = {
     menu = informationsMenu,
     render = function()
-        RageUI.Button("Prénom(s)", nil, {RightLabel = '~b~'..CharacterCreator.Data.Identity.informations.firstname}, true, {
+        RageUI.Button("Prénom(s)", nil, {RightLabel = CharacterCreator.Data.Identity.informations.firstname}, true, {
             onSelected = function()
                 CharacterCreator.Data.Identity.informations.firstname = Keyboard('Votre / Vos prénoms :', 30, CharacterCreator.Data.Identity.informations.firstname)
             end
         })
-        RageUI.Button("Nom", nil, {RightLabel = '~b~'..CharacterCreator.Data.Identity.informations.lastname}, true, {
+        RageUI.Button("Nom", nil, {RightLabel = CharacterCreator.Data.Identity.informations.lastname}, true, {
             onSelected = function()
                 CharacterCreator.Data.Identity.informations.lastname = Keyboard('Votre nom :', 30, CharacterCreator.Data.Identity.informations.lastname)
             end
@@ -44,7 +44,7 @@ CharacterCreator.Informations = {
                 CharacterCreator.Data.Identity.informations.weight = indexValue
             end
         })
-        RageUI.Button("Background", nil, {RightLabel = '~b~' .. CharacterCreator.Data.Identity.informations.background}, true, {
+        RageUI.Button("Background", nil, {RightLabel = formatBackground()}, true, {
             onSelected = function()
                 CharacterCreator.Data.Identity.informations.background = Keyboard('Votre background :', 5000, CharacterCreator.Data.Identity.informations.background)
             end
